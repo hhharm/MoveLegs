@@ -13,3 +13,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MoveLegs"
 include(":app")
+include(":wear")

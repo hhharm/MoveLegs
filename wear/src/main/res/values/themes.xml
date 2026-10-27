@@ -1,0 +1,5 @@
+<resources>
+    <style name="Theme.MoveLegs" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:windowBackground">#F3EAD7</item>
+    </style>
+</resources>

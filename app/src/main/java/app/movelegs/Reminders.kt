@@ -86,6 +86,7 @@ class ReminderReceiver : BroadcastReceiver() {
         if (!s.enabled) return
         Reminders.notify(ctx, s.pickNext())
         Reminders.schedule(ctx)
+        WearSync.push(ctx)
     }
 }
 
@@ -94,11 +95,12 @@ class ActionReceiver : BroadcastReceiver() {
         Reminders.cancelNotification(ctx)
         when (intent.action) {
             DONE -> {
-                Store(ctx).markDone()
+                Store(ctx).apply { markDone(); pickNext() }
                 Reminders.schedule(ctx)
             }
             SNOOZE -> Reminders.schedule(ctx, SNOOZE_MIN)
         }
+        WearSync.push(ctx)
     }
 
     companion object {

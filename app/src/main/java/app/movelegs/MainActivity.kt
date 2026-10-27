@@ -55,6 +55,7 @@ class MainActivity : ComponentActivity() {
         val store = Store(this)
         if (store.currentId == null) store.pickNext()
         Reminders.schedule(this)
+        WearSync.push(this)
 
         setContent {
             val ask = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
@@ -93,6 +94,7 @@ private fun Screen(store: Store) {
                 fresh = store.markDone()
                 store.pickNext()
                 Reminders.schedule(ctx)
+                WearSync.push(ctx)
                 rev++
             }
             if (fresh.isNotEmpty()) NewSticker(fresh.first())
